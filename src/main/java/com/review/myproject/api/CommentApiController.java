@@ -31,14 +31,14 @@ public class CommentApiController {
 
     // 댓글 수정
     @PutMapping("/{commentId}")
-    public String updateComment(Long commentId, CommentRequestDto commentRequestDto) {
+    public String updateComment(@PathVariable Long commentId, @RequestBody CommentRequestDto commentRequestDto) {
         commentService.updateComment(commentId, commentRequestDto);
         return "ok";
     }
 
     // 댓글 삭제
     @DeleteMapping("/{commentId}")
-    public String deleteComment(Long commentId) {
+    public String deleteComment(@PathVariable Long commentId) {
         commentService.deleteComment(commentId);
         return "ok";
     }

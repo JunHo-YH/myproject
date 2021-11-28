@@ -9,6 +9,7 @@ import com.review.myproject.repository.FeedRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,9 +43,11 @@ public class CommentService {
         );
         // 댓글을 생성할 피드 정보를 Comment 객체에 전달한다.
         Comment comment = new Comment(feed, commentRequestDto);
+        commentRepository.save(comment);
     }
 
     // 댓글 수정
+    @Transactional
     public void updateComment(Long commentId, CommentRequestDto commentRequestDto) {
         // 해당 댓글의 객체를 찾는다.
         Comment comment = commentRepository.findById(commentId).orElseThrow(

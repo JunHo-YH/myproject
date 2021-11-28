@@ -31,8 +31,9 @@ public class FeedApiController {
     }
 
     // 피드 수정
-    @PostMapping("/{feedId}")
+    @PutMapping("/{feedId}")
     public String updateFeed(@PathVariable Long feedId, @RequestBody FeedRequestDto feedRequestDto) {
+        System.out.println(feedId);
         feedService.updateFeed(feedId, feedRequestDto);
         return "ok";
     }

@@ -7,6 +7,7 @@ import com.review.myproject.repository.FeedRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,6 +32,7 @@ public class FeedService {
     }
 
     // 피드 수정
+    @Transactional
     public void updateFeed(Long feedId, FeedRequestDto feedRequestDto) {
         Feed feed = feedRepository.findById(feedId).orElseThrow(
                 () -> new IllegalArgumentException("존재하지 않는 피드입니다.")
